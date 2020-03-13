@@ -1,0 +1,66 @@
+from flask import Flask, request, jsonify
+import sqlite3
+
+app = Flask(__name__)
+
+
+def dict_factory(cursor, row):
+
+    d = {}
+
+    for idx, col in enumerate(cursor.description):
+
+        d[col[0]] = row[idx]
+
+    return d
+
+
+@app.route('/posts')
+def get_posts():
+    # Create cursor
+    con = sqlite3.connect("bio-info.db")
+    con.row_factory = dict_factory
+    cur = con.cursor()
+    field = request.args.get('sort')
+    order = request.args.get('order')
+    if field != 'ViewCount' and field != 'Score':
+        field = 'CreationDate'  # default field
+    if order != 'desc':
+        order = 'asc'  # default order
+    cur.execute("SELECT * FROM posts ORDER BY "+field+" "+order)
+    posts = cur.fetchall()
+    con.close()
+    return jsonify(results=posts, success=True)
+
+
+@app.route('/search')
+def search_posts():
+    con = sqlite3.connect("bio-info.db")
+    con.row_factory = dict_factory
+    cur = con.cursor()
+    keyword = request.args.get('keyword')
+    if keyword == None:
+        keyword = ''
+    pattern = '%'+keyword+'%'
+    cur.execute(
+        "SELECT * FROM posts WHERE Title LIKE ? OR Body LIKE ? ORDER BY CreationDate asc", (pattern, pattern))
+    posts = cur.fetchall()
+    con.close()
+    return jsonify(results=posts, success=True)
+
+
+@app.route('/posts/<string:id>')
+def get_post(id):
+    con = sqlite3.connect("bio-info.db")
+    con.row_factory = dict_factory
+    cur = con.cursor()
+    cur.execute("SELECT * FROM posts WHERE Id=?", [id])
+    post = cur.fetchone()
+    cur.execute("SELECT tag FROM post_tag_map WHERE postId=?", [id])
+    tagList = cur.fetchall()
+    tags = []
+    for tag in tagList:
+        tags.append(tag['tag'])
+    con.close()
+    post['Tags'] = tags
+    return jsonify(results=post, success=True)

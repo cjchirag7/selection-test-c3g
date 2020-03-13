@@ -46,7 +46,7 @@ LastActivityDate date,
 ParentId integer,
 OwnerDisplayName string,
 Score integer,
-FavoriteCount integer
+FavoriteCount integer default 0
 )''')
 
 curr.execute('''CREATE TABLE IF NOT EXISTS post_tag_map
@@ -91,7 +91,7 @@ for child in root:
             attrs.append(attr)
             dtype = dtypes[attr]
             if(dtype == date):
-                vals.append('"'+str(dtype(val))+'"')
+                vals.append(str(dtype(val)))
             elif dtype == int:
                 vals.append(int(val))
             else:
