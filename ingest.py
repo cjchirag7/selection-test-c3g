@@ -45,7 +45,7 @@ OwnerUserId integer,
 LastActivityDate date,
 ParentId integer,
 OwnerDisplayName string,
-Score integer,
+Score integer default 0,
 FavoriteCount integer default 0
 )''')
 

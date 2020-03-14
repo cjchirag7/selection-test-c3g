@@ -14,6 +14,11 @@ def dict_factory(cursor, row):
 
     return d
 
+@app.route('/')
+def home():
+  return '''<h1 align="center"> Welcome to API for Selection Test of "Ingesting the Canadian Common CV"</h1><br/>
+  <h2 align="center"> View API Documentation <a href="https://documenter.getpostman.com/view/8064496/SzS2wnmA?version=latest">here</a></h2><br/>
+  <h2 align="center"> View the frontend at <a href="http://localhost:3000/">http://localhost:3000/</a></h2>'''
 
 @app.route('/posts')
 def get_posts():
@@ -56,6 +61,8 @@ def get_post(id):
     cur = con.cursor()
     cur.execute("SELECT * FROM posts WHERE Id=?", [id])
     post = cur.fetchone()
+    if post==None:
+      return jsonify(error="Invalid PostId", success=False)
     cur.execute("SELECT tag FROM post_tag_map WHERE postId=?", [id])
     tagList = cur.fetchall()
     tags = []

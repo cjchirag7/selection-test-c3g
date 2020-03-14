@@ -11,3 +11,19 @@ python3 ingest.py <XML-File-Location> <DatabaseFile-Name>
 ```
 
 In case no arguements are provided, the default arguements would be used.
+
+3. The API was made in Flask.
+
+i. Enter the following commands in terminal to create a virtual environment and install the dependencies :
+```
+pipenv shell
+pipenv install -r requirements.txt
+virtualenv run
+```
+
+ii. Enter the following commands to run the server :-
+```
+env FLASK_ENV=development FLASK_APP=app.py flask run
+```
+
+iii. The API documentation can be viewed [here](https://documenter.getpostman.com/view/8064496/SzS2wnmA?version=latest)
