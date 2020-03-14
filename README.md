@@ -27,3 +27,16 @@ env FLASK_ENV=development FLASK_APP=app.py flask run
 ```
 
 iii. The API documentation can be viewed [here](https://documenter.getpostman.com/view/8064496/SzS2wnmA?version=latest)
+
+4. The frontend was made in React.
+
+i. Enter the following commands to move to 'frontend' directory and install the dependencies :
+```
+cd frontend
+npm install
+```
+
+ii. To run the frontend in browser, enter the following command :
+```
+npm start
+```
