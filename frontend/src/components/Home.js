@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ListGroup, Button, ButtonGroup } from 'reactstrap';
+import { ListGroup, Button, ButtonGroup, Alert } from 'reactstrap';
 import baseUrl from '../shared/baseUrl';
 import Loading from './Loading';
 import PostListItem from './PostListItem';
@@ -65,7 +65,9 @@ class Home extends Component {
       return (
         <div className='container'>
           <div className='row justify-content-center heading'>
-            <h3 align='center'>{error}</h3>
+            <Alert color='danger'>
+              <h3 align='center'>{error}</h3>
+            </Alert>
           </div>
         </div>
       );

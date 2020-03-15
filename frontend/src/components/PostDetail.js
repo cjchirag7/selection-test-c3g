@@ -6,6 +6,7 @@ import {
   CardHeader,
   CardTitle,
   CardText,
+  Alert,
   Badge,
   CardBody,
   CardFooter
@@ -68,7 +69,9 @@ class PostDetail extends Component {
       return (
         <div className='container'>
           <div className='row justify-content-center heading'>
-            <h3 align='center'>{error}</h3>
+            <Alert color='danger'>
+              <h3 align='center'>{error}</h3>
+            </Alert>
           </div>
         </div>
       );
@@ -155,15 +158,17 @@ class PostDetail extends Component {
                 </CardTitle>
                 <CardText>
                   <b> Tags: </b>{' '}
-                  {Tags.map((tag, i) => (
-                    <React.Fragment key={i.toString()}>
-                      <Badge color={colors[i % colors.length]} pill>
-                        {' '}
-                        {tag}
-                      </Badge>
-                      &nbsp;
-                    </React.Fragment>
-                  ))}{' '}
+                  {Tags.length
+                    ? Tags.map((tag, i) => (
+                        <React.Fragment key={i.toString()}>
+                          <Badge color={colors[i % colors.length]} pill>
+                            {' '}
+                            {tag}
+                          </Badge>
+                          &nbsp;
+                        </React.Fragment>
+                      ))
+                    : 'None'}{' '}
                   <br />
                   <br />
                   <Markdown escapeHtml={false} source={Body} />

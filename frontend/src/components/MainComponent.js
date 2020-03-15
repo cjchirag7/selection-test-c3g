@@ -10,29 +10,18 @@ class Main extends Component {
     window.scrollTo(0, 0);
   }
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      keyword: ''
-    };
-    this.changeKeyword = this.changeKeyword.bind(this);
-  }
-
-  changeKeyword(e) {
-    this.setState({ keyword: e.target.value });
-  }
-
   render() {
-    const { keyword } = this.state;
     return (
       <div className='App'>
-        <Header changeKeyword={this.changeKeyword} keyword={keyword} />
+        <Header />
         <Switch location={this.props.location}>
           <Route exact path='/home' component={() => <Home />} />
           <Route
             exact
             path='/search-results'
-            component={() => <SearchResults keyword={keyword} />}
+            component={({ location }) => (
+              <SearchResults keyword={location.search.split('?keyword=')[1]} />
+            )}
           />
           <Route
             exact

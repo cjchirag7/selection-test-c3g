@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Alert } from 'reactstrap';
 import Loading from './Loading';
 import PostListItem from './PostListItem';
 import baseUrl from '../shared/baseUrl';
@@ -59,7 +60,9 @@ class SearchResults extends Component {
       return (
         <div className='container'>
           <div className='row justify-content-center heading'>
-            <h3 align='center'>{error}</h3>
+            <Alert color='danger'>
+              <h3 align='center'>{error}</h3>
+            </Alert>
           </div>
         </div>
       );

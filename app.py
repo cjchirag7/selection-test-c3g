@@ -19,7 +19,7 @@ def dict_factory(cursor, row):
 def home():
   return '''<h1 align="center"> Welcome to API for Selection Test of "Ingesting the Canadian Common CV"</h1><br/>
   <h2 align="center"> View API Documentation <a href="https://documenter.getpostman.com/view/8064496/SzS2wnmA?version=latest">here</a></h2><br/>
-  <h2 align="center"> View the frontend at <a href="http://localhost:3000/">http://localhost:3000/</a></h2>'''
+  <h2 align="center"> View the frontend at <a href="http://localhost:3000/">http://localhost:3000/</a> after entering 'npm start' in terminal, from /frontend directory</h2>'''
 
 @app.route('/posts')
 def get_posts():

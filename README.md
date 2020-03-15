@@ -10,18 +10,18 @@ The file can be run to ingest data from any XML File having a similar format to 
 python3 ingest.py <XML-File-Location> <DatabaseFile-Name>
 ```
 
-In case no arguements are provided, the default arguements would be used.
+In case no arguements are provided, the default arguements would be used. Currently, the data of posts has been ingested in ***bio-info.db*** file.
 
 3. The API was made in Flask.
 
-i. Enter the following commands in terminal to create a virtual environment and install the dependencies :
+i. Enter the following commands once in terminal to create a virtual environment and install the dependencies :
 ```
 pipenv shell
 pipenv install -r requirements.txt
 virtualenv run
 ```
 
-ii. Enter the following commands to run the server :-
+ii. Enter the following command to run the server :-
 ```
 env FLASK_ENV=development FLASK_APP=app.py flask run
 ```
@@ -40,3 +40,10 @@ ii. To run the frontend in browser, enter the following command :
 ```
 npm start
 ```
+
+## Screenshots of the web application
+
+![home page](https://selection-tests-cjchirag7.s3.ap-south-1.amazonaws.com/home.png)
+![search page](https://selection-tests-cjchirag7.s3.ap-south-1.amazonaws.com/search-results.png)
+![post detail page](https://selection-tests-cjchirag7.s3.ap-south-1.amazonaws.com/post-detail-1.png)
+![post detail page](https://selection-tests-cjchirag7.s3.ap-south-1.amazonaws.com/post-detail-2.png)
